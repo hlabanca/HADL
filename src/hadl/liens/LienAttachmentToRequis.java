@@ -1,6 +1,7 @@
 package hadl.liens;
 
 import hadl.connecteur.RoleTo;
+import hadl.ports.PortRequis;
 
 public class LienAttachmentToRequis {
 
