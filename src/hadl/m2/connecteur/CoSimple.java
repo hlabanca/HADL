@@ -1,10 +1,18 @@
 package hadl.m2.connecteur;
 
-public class CoSimple extends Connecteur {
+import java.util.List;
 
-	public CoSimple(RoleTo[] to, RoleFrom[] from) {
-		super(to, from);
+public class CoSimple extends Connecteur {
+	
+	/**
+	 * Ajouter un couple de rôles, les messages passant par from
+	 * sortiront immédiatement par to.
+	 * @param from Point d'entrée
+	 * @param to Point de sortie
+	 */
+	public void addRoles(RoleFrom from, RoleTo to) {
+		couplesFromTo.add(new Glue(from, to));
 	}
 
-	private Glue glue;
+	private List<Glue> couplesFromTo;
 }

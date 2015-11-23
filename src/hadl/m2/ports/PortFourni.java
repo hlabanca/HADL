@@ -1,5 +1,5 @@
 package hadl.m2.ports;
 
-public interface PortFourni {
+public class PortFourni extends hadl.observer.Subject {
 
 }

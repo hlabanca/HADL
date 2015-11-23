@@ -1,5 +1,5 @@
 package hadl.m2.ports;
 
-public interface PortRequis {
+public class PortRequis extends hadl.observer.Subject {
 
 }

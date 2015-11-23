@@ -1,5 +1,5 @@
 package hadl.m2.ports;
 
-public class PortComposantRequis implements PortRequis, EntreeSortie {
+public class PortComposantRequis extends PortRequis implements EntreeSortie {
 
 }

@@ -6,9 +6,18 @@ import hadl.m2.connecteur.RoleTo;
 
 public class RPC extends CoSimple {
 
+	private Called called = new Called();
+	private Caller caller = new Caller();
+	
 	public RPC() {
-		super(new RoleTo[] {new Called()},
-				new RoleFrom[] {new Caller()});
+		addRoles(caller, called);
 	}
 
+	public Called called() {
+		return called;
+	}
+	
+	public Caller caller() {
+		return caller;
+	}
 }
