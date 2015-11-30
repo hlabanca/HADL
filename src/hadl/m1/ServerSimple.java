@@ -6,6 +6,6 @@ import hadl.m2.ports.PortComposantRequis;
 public class ServerSimple extends Cpt_Simple {
 
 	public ServerSimple() {
-		super(null, null, new PortComposantRequis[] {new ReceiveRequest()});
+		addPortRequis(new PortComposantRequis("ReceiveRequest"));
 	}
 }

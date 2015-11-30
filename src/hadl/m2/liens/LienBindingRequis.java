@@ -3,8 +3,9 @@ package hadl.m2.liens;
 import hadl.m2.ports.PortComposantRequis;
 import hadl.m2.ports.PortConfigRequis;
 
-public class LienBindingRequis {
+public class LienBindingRequis extends Lien {
 	
-	private PortConfigRequis portConfig;
-	private PortComposantRequis portComposant;
+	public LienBindingRequis(PortConfigRequis source, PortComposantRequis destination) {
+		super(source, destination);
+	}
 }

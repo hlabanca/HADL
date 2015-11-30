@@ -6,6 +6,8 @@ public class Subject {
 
 	private List<Observer> observers;
 	
+	private String nom;
+	
 	public void registerObserver(Observer observer) {
 		observers.add(observer);
 	}
@@ -19,4 +21,13 @@ public class Subject {
 			obs.passMessage(message);
 		}
 	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public Subject(String nom) {
+		this.nom = nom;
+	}
+
 }

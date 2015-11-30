@@ -11,8 +11,10 @@ public class CoSimple extends Connecteur {
 	 * @param to Point de sortie
 	 */
 	public void addRoles(RoleFrom from, RoleTo to) {
+		super.addRoles(from, to);
 		couplesFromTo.add(new Glue(from, to));
 	}
 
 	private List<Glue> couplesFromTo;
+	
 }
