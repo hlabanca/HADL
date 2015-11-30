@@ -1,13 +1,14 @@
 package hadl.m2.connecteur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hadl.observer.HadlUtil;
 
 public abstract class Connecteur {
 
-	private List<RoleFrom> rolesFrom;
-	private List<RoleTo> rolesTo;
+	private List<RoleFrom> rolesFrom = new ArrayList<>();
+	private List<RoleTo> rolesTo = new ArrayList<>();
 	
 	public RoleFrom getRoleFrom(String nom) {
 		return HadlUtil.getElement(nom, rolesFrom);

@@ -1,5 +1,6 @@
 package hadl.m2.connecteur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoSimple extends Connecteur {
@@ -15,6 +16,6 @@ public class CoSimple extends Connecteur {
 		couplesFromTo.add(new Glue(from, to));
 	}
 
-	private List<Glue> couplesFromTo;
+	private List<Glue> couplesFromTo = new ArrayList<>();
 	
 }
