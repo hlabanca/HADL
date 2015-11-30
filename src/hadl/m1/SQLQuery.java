@@ -6,9 +6,7 @@ import hadl.m2.connecteur.RoleTo;
 
 public class SQLQuery extends CoSimple {
 
-	public SQLQuery(RoleTo[] to, RoleFrom[] from) {
-		super(to, from);
-		// TODO Auto-generated constructor stub
+	public SQLQuery() {
+		addRoles(new RoleFrom("Caller"), new RoleTo("Called"));
 	}
-
 }

@@ -6,9 +6,8 @@ import hadl.m2.connecteur.RoleTo;
 
 public class SecurityQuery extends CoSimple {
 
-	public SecurityQuery(RoleTo[] to, RoleFrom[] from) {
-		super(to, from);
-		// TODO Auto-generated constructor stub
+	public SecurityQuery() {
+		addRoles(new RoleFrom("Caller"), new RoleTo("Called"));
 	}
 
 }

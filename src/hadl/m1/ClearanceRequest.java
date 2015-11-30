@@ -6,9 +6,8 @@ import hadl.m2.connecteur.RoleTo;
 
 public class ClearanceRequest extends CoSimple {
 
-	public ClearanceRequest(RoleTo[] to, RoleFrom[] from) {
-		super(to, from);
-		// TODO Auto-generated constructor stub
+	public ClearanceRequest() {
+		addRoles(new RoleFrom("Caller"), new RoleTo("Called"));
 	}
 
 }

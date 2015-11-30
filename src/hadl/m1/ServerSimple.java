@@ -8,4 +8,5 @@ public class ServerSimple extends Cpt_Simple {
 	public ServerSimple() {
 		addPortRequis(new PortComposantRequis("ReceiveRequest"));
 	}
+	
 }
