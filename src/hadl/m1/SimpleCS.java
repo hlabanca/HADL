@@ -20,4 +20,9 @@ public class SimpleCS extends Configuration {
 	private ServerSimple servSimple = new ServerSimple();
 	private ServerConfig servConf = new ServerConfig();
 	private RPC rpc = new RPC();
+	
+	//Service fourni
+	public void sendRequest(Object request) {
+		client.serviceSendRequest(request);
+	}
 }

@@ -2,12 +2,33 @@ package hadl.m1;
 
 import hadl.m2.composant.Cpt_Simple;
 import hadl.m2.ports.PortComposantRequis;
+import hadl.m2.ports.ServiceRequis;
 
 public class Database extends Cpt_Simple {
 
+	PortComposantRequis queryd = new PortComposantRequis("QueryD");
+	PortComposantRequis sec = new PortComposantRequis("SecurityManagement");
+	
 	public Database() {
-		addPortRequis(new PortComposantRequis("QueryD"));
-		addPortRequis(new PortComposantRequis("SecurityManagement"));
+		addPortRequis(queryd);
+		addPortRequis(sec);
+		queryd.registerObserver(serviceQueryD);
+		sec.registerObserver(serviceSecurityManagement);
 	}
 
+	private ServiceRequis serviceQueryD = new ServiceRequis() {
+		
+		@Override
+		public void passMessage(Object message) {
+			System.out.println("[Database] Reçu QueryD : "+message);
+		}
+	};
+	
+	private ServiceRequis serviceSecurityManagement = new ServiceRequis() {
+		
+		@Override
+		public void passMessage(Object message) {
+			System.out.println("[Database] Reçu SecurityManagement : "+message);
+		}
+	};
 }

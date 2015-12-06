@@ -10,7 +10,8 @@ public class Client extends Cpt_Simple {
 	public Client() {
 		addPortFourni(sendRequest);
 	}
-	public void makeRequest() {
-		sendRequest.notifyObservers("message");
+	
+	public void serviceSendRequest(Object message) {
+		sendRequest.notifyObservers(message);
 	}
 }

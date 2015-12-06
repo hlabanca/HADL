@@ -10,6 +10,6 @@ public abstract class HadlUtil {
 				return elt;
 			}
 		}
-		throw new RuntimeException("L'élément n'existe pas");
+		throw new RuntimeException("L'élément "+nom+" n'existe pas");
 	}
 }
