@@ -11,7 +11,7 @@ public class Client extends Cpt_Simple {
 		addPortFourni(sendRequest);
 	}
 	
-	public void serviceSendRequest(Object message) {
-		sendRequest.notifyObservers(message);
+	public Object serviceSendRequest(Object message) {
+		return sendRequest.notifyObservers(message);
 	}
 }

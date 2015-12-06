@@ -19,16 +19,18 @@ public class Database extends Cpt_Simple {
 	private ServiceRequis serviceQueryD = new ServiceRequis() {
 		
 		@Override
-		public void passMessage(Object message) {
+		public Object passMessage(Object message) {
 			System.out.println("[Database] Reçu QueryD : "+message);
+			return "Je suis une réponse à une requête SQL.";
 		}
 	};
 	
 	private ServiceRequis serviceSecurityManagement = new ServiceRequis() {
 		
 		@Override
-		public void passMessage(Object message) {
+		public Object passMessage(Object message) {
 			System.out.println("[Database] Reçu SecurityManagement : "+message);
+			return true;
 		}
 	};
 }

@@ -13,22 +13,22 @@ public class SecurityManager extends Cpt_Simple {
 	public SecurityManager() {
 		addPortFourni(checkQuery);;
 		addPortRequis(sec);
-		sec.unregisterObserver(serviceSecurityAuth);
+		sec.registerObserver(serviceSecurityAuth);
 	}
 
 	private ServiceRequis serviceSecurityAuth = new ServiceRequis() {
 		@Override
-		public void passMessage(Object message) {
+		public Object passMessage(Object message) {
 			Requete msg = (Requete) message;
 			System.out.println("[SecurityManager] Message reçu : "+msg);
 			System.out.println("[SecurityManager] Login validé");
 			//L'identité est validée, la base n'a besoin que du corps de la requête.
-			serviceCheckQuery(msg.getRequete());
+			return serviceCheckQuery(msg.getRequete());
 		}
 	};
 	
-	public void serviceCheckQuery(Object message) {
+	private Object serviceCheckQuery(Object message) {
 		System.out.println("[SecurityManager] Envoi d'une CheckQuery");
-		checkQuery.notifyObservers(message);
+		return checkQuery.notifyObservers(message);
 	}
 }

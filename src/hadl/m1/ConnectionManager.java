@@ -22,28 +22,29 @@ public class ConnectionManager extends Cpt_Simple {
 	private ServiceRequis serviceExternalSocket = new ServiceRequis() {
 
 		@Override
-		public void passMessage(Object message) {
+		public Object passMessage(Object message) {
 			Requete msg = (Requete) message;
 			System.out.println("[ConnectionManager] Message reçu : "+msg);
 			//Suivant le type de la requête, appeler le service correspondant
 			switch (msg.getType()) {
 			case SECURITE:
-				serviceSecurityCheck(msg);
-				break;
+				return serviceSecurityCheck(msg);
 			case SQL:
-				serviceDBQuery(msg.getRequete());
+				return serviceDBQuery(msg.getRequete());
+			default: //N'arrivera jamais, mais Eclipse le veut :p
+				return null;
 			}
 		}
 	};
 	
-	public void serviceDBQuery(Object message) {
+	private Object serviceDBQuery(Object message) {
 		System.out.println("[ConnectionManager] Envoi d'une requête SQL non sécurisée.");
-		dbq.notifyObservers(message);
+		return dbq.notifyObservers(message);
 	}
 	
-	public void serviceSecurityCheck(Object message) {
+	private Object serviceSecurityCheck(Object message) {
 		System.out.println("[ConnectionManager] Envoi d'une requête sécurisée.");
-		sec.notifyObservers(message);
+		return sec.notifyObservers(message);
 	}
 
 }

@@ -17,20 +17,24 @@ public class App {
 			System.out.println("Sélectionner le type de requête. 1:Requête non sécurisée, 2:Requête sécurisée");
 			int choix = sc.nextInt();
 			sc.nextLine();
+			Requete req = null;
 			switch (choix) {
 			case 1:
-				requeteSql();
+				req = requeteSql();
 				break;
 			case 2:
-				requeteSecu();
+				req = requeteSecu();
 				break;
 			default:
 				System.out.println("Mauvais choix.");
+				continue;
 			}
+			Object reponse = cs.sendRequest(req);
+			System.out.println("Réponse : "+reponse);
 		}
 	}
 
-	private static void requeteSecu() {
+	private static Requete requeteSecu() {
 		System.out.println("Entrez votre login :");
 		String login = sc.nextLine();
 		System.out.println("Entrez votre mot de passe :");
@@ -38,14 +42,14 @@ public class App {
 		System.out.println("Entrez la requête :");
 		String req = sc.nextLine();
 		
-		cs.sendRequest(new Requete(Type.SECURITE, login, pass, req));
+		return new Requete(Type.SECURITE, login, pass, req);
 	}
 
-	private static void requeteSql() {
+	private static Requete requeteSql() {
 		System.out.println("Entrez la requête :");
 		String req = sc.nextLine();
 		
-		cs.sendRequest(new Requete(Type.SQL, "", "", req));
+		return new Requete(Type.SQL, "", "", req);
 	}
 
 }

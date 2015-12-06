@@ -19,8 +19,8 @@ public class Lien implements Observer {
 	}
 	
 	@Override
-	public void passMessage(Object message) {
-		destination.notifyObservers(message);
+	public Object passMessage(Object message) {
+		return destination.notifyObservers(message);
 	}
 	
 	

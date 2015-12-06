@@ -22,7 +22,7 @@ public class SimpleCS extends Configuration {
 	private RPC rpc = new RPC();
 	
 	//Service fourni
-	public void sendRequest(Object request) {
-		client.serviceSendRequest(request);
+	public Object sendRequest(Object request) {
+		return client.serviceSendRequest(request);
 	}
 }
