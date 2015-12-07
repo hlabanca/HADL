@@ -8,15 +8,33 @@ package hadl.m1;
 public class Requete {
 	
 	public enum Type {
-		/** Requête SQL non sécurisée (login/mdp non requis), passe directement à la Database */
+		/** Requête SQL, nécessite une connexion préalable */
 		SQL,
-		/** Requête sécurisée, avec login/mdp, doit être validée par le SecurityManager */
-		SECURITE
+		/** Requête de connexion avec login/mdp, doit être validée par le SecurityManager */
+		LOGIN,
+		LOGOUT
 	};
 	private Type type;
 	private String login, mdp, requete;
 
-	public Requete(Type type, String login, String mdp, String requete) {
+	/**
+	 * Requête de type login
+	 */
+	public Requete(String login, String mdp) {
+		this(Type.LOGIN, login, mdp, "");
+	}
+	/**
+	 * Requête de type SQL
+	 */
+	public Requete(String requete) {
+		this(Type.SQL, "", "", requete);
+	}
+	
+	public Requete(Type type) {
+		this.type = type;
+	}
+	
+	private Requete(Type type, String login, String mdp, String requete) {
 		this.type = type;
 		this.login = login;
 		this.mdp = mdp;
@@ -41,7 +59,16 @@ public class Requete {
 	
 	@Override
 	public String toString() {
-		return "[Requete "+type+"]Utilisateur : "+login+", Pass : "+mdp+", Requête : "+requete;
+		switch (type) {
+		case LOGIN:
+			return "Requête connexion : login="+login+" ; pass="+mdp;
+		case SQL:
+			return "Requête SQL : "+requete;
+		case LOGOUT:
+			return "Requête déconnexion";
+		default:
+			return "";
+		}
 	}
 	
 }

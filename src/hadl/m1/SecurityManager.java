@@ -20,15 +20,41 @@ public class SecurityManager extends Cpt_Simple {
 		@Override
 		public Object passMessage(Object message) {
 			Requete msg = (Requete) message;
-			System.out.println("[SecurityManager] Message reçu : "+msg);
-			System.out.println("[SecurityManager] Login validé");
-			//L'identité est validée, la base n'a besoin que du corps de la requête.
-			return serviceCheckQuery(msg.getRequete());
+			System.out.println("[SecurityManager] Reçu demande SecurityAuth : "+msg);
+			//Construire une pseudo-requête SQL pour vérifier les infos de l'utilisateur
+			String req = "SELECT authorized FROM Users WHERE login="+msg.getLogin()+" AND pass="+msg.getMdp();
+			String res = (String) serviceCheckQuery(req);
+			ReponseAuth reponse = new ReponseAuth();
+			//Traitement de la réponse
+			if (res != null && !res.isEmpty()) {
+				if (res.equals("1")) {
+					reponse.valide = true;
+				} else {
+					reponse.valide = false;
+					reponse.raisonEchec = "Utilisateur non autorisé";
+				}
+			} else {
+				reponse.valide = false;
+				reponse.raisonEchec = "Utilisateur inconnu ou mot de passe incorrect";
+			}
+			return reponse;
 		}
 	};
 	
 	private Object serviceCheckQuery(Object message) {
-		System.out.println("[SecurityManager] Envoi d'une CheckQuery");
-		return checkQuery.notifyObservers(message);
+		System.out.println("[SecurityManager] Envoi d'une CheckQuery : "+message);
+		Object rep = checkQuery.notifyObservers(message);
+		System.out.println("[SecurityManager] Retour de CheckQuery : "+rep);
+		return rep;
+	}
+	
+	/** Réponse à une demande d'authentification */
+	public class ReponseAuth {
+		public boolean valide;
+		public String raisonEchec;
+		@Override
+		public String toString() {
+			return "valide="+valide+",raison="+raisonEchec;
+		}
 	}
 }
