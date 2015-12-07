@@ -16,6 +16,7 @@ public class Subject {
 	
 	public Object notifyObservers(Object message) {
 		if (observer == null) {
+			System.out.println("Erreur : "+nom+" n'est pas connecté.");
 			return null;
 		}
 		return observer.passMessage(message);
