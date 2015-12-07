@@ -1,4 +1,4 @@
-package hadl.m1.app;
+package hadl.m0;
 
 import java.util.Scanner;
 
